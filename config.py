@@ -10,6 +10,7 @@ Semua file lain mengimport dari sini.
 import logging
 from pathlib import Path
 
+
 # ─────────────────────────────────────────────
 # ROOT PROJECT
 # ─────────────────────────────────────────────
@@ -21,8 +22,14 @@ ROOT_DIR = Path(__file__).parent.resolve()
 # ─────────────────────────────────────────────
 # MODEL PATHS
 # ─────────────────────────────────────────────
-MODEL_DIR = ROOT_DIR / "models"
-CHECKPOINT_PATH = MODEL_DIR / "clipcap_finetuned_local.pth"
+# ==========================================================
+# Hugging Face Model Repository
+# ==========================================================
+HF_REPO_ID = "ayuuuuuuu/arrai-clipcap-model"
+HF_MODEL_FILE = "clipcap_finetuned_local.pth"
+
+# Cache otomatis di ~/.cache/huggingface
+
 ARCHITECTURE_DIR = ROOT_DIR / "architecture"
 
 # ─────────────────────────────────────────────
@@ -168,9 +175,8 @@ def check_environment() -> dict[str, bool]:
     Return dict yang bisa ditampilkan di sidebar atau log.
     """
     return {
-        "checkpoint_exists": CHECKPOINT_PATH.exists(),
+        "huggingface_repo": HF_REPO_ID,
         "eval_json_exists": EVAL_JSON_PATH.exists(),
         "sample_captions_exists": SAMPLE_CAPTIONS_PATH.exists(),
         "sample_images_dir_exists": SAMPLE_IMAGES_DIR.exists(),
-        "models_dir_exists": MODEL_DIR.exists(),
     }

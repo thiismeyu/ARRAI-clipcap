@@ -23,13 +23,14 @@ from typing import Optional
 
 import torch
 import streamlit as st
-
+from huggingface_hub import hf_hub_download
 # Pastikan architecture/ bisa diimport
 ROOT_DIR = Path(__file__).parent.parent.resolve()
 sys.path.insert(0, str(ROOT_DIR))
 
 from config import (
-    CHECKPOINT_PATH,
+    HF_REPO_ID,
+    HF_MODEL_FILE,
     CLIP_BACKBONE,
     CLIP_DIM,
     GPT2_DIM,
@@ -78,15 +79,37 @@ def load_model(checkpoint_path: Optional[str] = None) -> ModelBundle:
     import clip
     from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
-    ckpt_path = Path(checkpoint_path) if checkpoint_path else CHECKPOINT_PATH
+    if checkpoint_path:
+        ckpt_path = Path(checkpoint_path)
+    else:
+        logger.info("Downloading checkpoint from Hugging Face...")
+
+        try:
+            ckpt_path = Path(
+                hf_hub_download(
+                    repo_id=HF_REPO_ID,
+                    filename=HF_MODEL_FILE,
+                )
+            )
+        except Exception as e:
+            raise RuntimeError(
+                f"Gagal mengunduh model dari Hugging Face.\n"
+                f"Repository: {HF_REPO_ID}\n"
+                f"File: {HF_MODEL_FILE}\n"
+                f"Error: {e}"
+            )
+
+    logger.info(f"Checkpoint : {ckpt_path}")
+
 
     # ── 1. Validasi file checkpoint ──────────────────────────────────────
     logger.info(f"Mencari checkpoint di: {ckpt_path}")
     if not ckpt_path.exists():
         msg = (
             f"Checkpoint tidak ditemukan: {ckpt_path}\n"
-            f"Pastikan file 'clipcap_finetuned_local.pth' ada di folder 'models/'.\n"
-            f"File ini tidak disertakan di repository karena ukurannya ~600MB."
+            f"Gagal mengunduh model dari Hugging Face.\n"
+            f"Repository: {HF_REPO_ID}\n"
+            f"File: {HF_MODEL_FILE}"
         )
         logger.error(msg)
         raise FileNotFoundError(msg)

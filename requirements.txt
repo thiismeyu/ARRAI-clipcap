@@ -30,9 +30,10 @@ Pillow>=10.0.0
 
 # Scientific computing
 numpy>=1.24.0
+huggingface_hub>=0.33
 
 # ─────────────────────────────────────────────
 # CATATAN INSTALASI:
 # Setelah `pip install -r requirements.txt`, jalankan:
-#   pip install git+https://github.com/openai/CLIP.git
+git+https://github.com/openai/CLIP.git
 # ─────────────────────────────────────────────
