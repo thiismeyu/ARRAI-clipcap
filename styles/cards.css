@@ -7,29 +7,11 @@
    GLASS CARD
    ========================================================== */
 
-.glass {
-
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-
-    background: rgba(17, 22, 30, 0.94);
-
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: var(--radius-lg);
-
-    padding: var(--card-padding);
-
-    transition:
-        border-color var(--transition-normal),
-        box-shadow var(--transition-normal),
-        transform var(--transition-normal);
+.glass{
+    border:none;
     box-shadow:
-        0 8px 32px rgba(0,0,0,.28);
-
+        inset 0 0 0 1px rgba(255,255,255,.08),
+        0 10px 30px rgba(0,0,0,.30);
 }
 
 .glass::before {
