@@ -21,12 +21,29 @@ html, body, .stApp {
 }
 
 /* Grid pattern via pseudo — override Streamlit wrapper */
-[data-testid="stAppViewContainer"] {
-    background-color: #090C10 !important;
+[data-testid="stAppViewContainer"]{
+    position: relative;
+    background:#090C10 !important;
+    overflow:hidden;
+}
+
+[data-testid="stAppViewContainer"]::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
     background-image:
         linear-gradient(rgba(109,93,246,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(109,93,246,.03) 1px, transparent 1px) !important;
-    background-size: 52px 52px !important;
+        linear-gradient(90deg, rgba(109,93,246,.03) 1px, transparent 1px);
+
+    background-size:52px 52px;
+
+    z-index:-1;
+
+    pointer-events:none;
 }
 
 [data-testid="stMain"] {
