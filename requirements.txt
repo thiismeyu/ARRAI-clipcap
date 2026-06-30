@@ -1,4 +1,3 @@
-```text
 # ==========================================================
 # ARRAI - ClipCap AI Captioning WebApp
 # Python 3.11
@@ -19,4 +18,3 @@ Pillow==11.3.0
 numpy==2.2.6
 
 git+https://github.com/openai/CLIP.git
-```
