@@ -184,6 +184,19 @@ def load_model(checkpoint_path: Optional[str] = None) -> ModelBundle:
         p.requires_grad = False
 
     logger.info("GPT-2 loaded ✅")
+    
+    # ================================
+    # BEBASKAN MEMORY DI SINI
+    # ================================
+    import gc
+
+    del ckpt
+    gc.collect()
+
+    if torch.cuda.is_available():
+        torch.cuda.empty_cache()
+
+    logger.info("Memory cleaned.")
 
     # ── 6. Load CLIP ──────────────────────────────────────────────────────
     logger.info(f"Memuat CLIP {clip_backbone}...")

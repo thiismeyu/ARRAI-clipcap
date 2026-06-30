@@ -1,39 +1,22 @@
-# ─────────────────────────────────────────────
-# ClipCap AI Captioning WebApp
-# Requirements — dikunci per versi untuk reproducibility
-# ─────────────────────────────────────────────
+```text
+# ==========================================================
+# ARRAI - ClipCap AI Captioning WebApp
+# Python 3.11
+# ==========================================================
 
-# Core framework
-streamlit>=1.35.0
+streamlit==1.46.1
 
-# PyTorch — install sesuai hardware:
-#   CPU only : pip install torch torchvision
-#   CUDA 11.8: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu118
-#   CUDA 12.1: pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-# Versi minimum:
-torch>=2.1.0
-torchvision>=0.16.0
+torch==2.7.1
+torchvision==0.22.1
 
-# CLIP — WAJIB install dari GitHub, bukan dari PyPI
-# pip install git+https://github.com/openai/CLIP.git
-# Baris di bawah hanya untuk referensi, tidak bisa di-install langsung via requirements.txt
-# clip @ git+https://github.com/openai/CLIP.git
+transformers==4.53.3
+huggingface_hub==0.33.5
 
-# HuggingFace Transformers (untuk GPT-2)
-transformers>=4.40.0
+deep-translator==1.11.4
 
-# Translator
-deep-translator>=1.11.0
+Pillow==11.3.0
 
-# Image processing
-Pillow>=10.0.0
+numpy==2.2.6
 
-# Scientific computing
-numpy>=1.24.0
-huggingface_hub>=0.33
-
-# ─────────────────────────────────────────────
-# CATATAN INSTALASI:
-# Setelah `pip install -r requirements.txt`, jalankan:
 git+https://github.com/openai/CLIP.git
-# ─────────────────────────────────────────────
+```
